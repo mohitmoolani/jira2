@@ -25,8 +25,8 @@ app.get('/jira', function(req, res) {
     oa.getOAuthRequestToken(function(error, oauthToken, oauthTokenSecret) {
         if (error) {
             console.log('Error:', error);
-            res.send(oauthToken);
-            res.send(oauthTokenSecret);
+            console.log(oauthToken);
+            console.log(oauthTokenSecret);
             res.send('STEP 1: Error requesting OAuth access token');
         } else {
             req.session.oa = oa;
