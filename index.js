@@ -22,10 +22,11 @@ app.get('/jira', function(req, res) {
         '1.0', //OAuth version
         "http://localhost:1337/jira/callback", //callback url
         "RSA-SHA1");
-    res.send(oa);
     oa.getOAuthRequestToken(function(error, oauthToken, oauthTokenSecret) {
         if (error) {
             console.log('Error:', error);
+            res.send(oauthToken);
+            res.send(oauthTokenSecret);
             res.send('STEP 1: Error requesting OAuth access token');
         } else {
             req.session.oa = oa;
