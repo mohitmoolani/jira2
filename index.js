@@ -96,6 +96,6 @@ app.get('/projects', function(req, res) {
 
 });
 
-app.listen(1337, function() {
+app.listen(process.env.PORT || 5000, function() {
     console.log('Example app listening on port 1337!');
 });
