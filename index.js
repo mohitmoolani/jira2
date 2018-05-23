@@ -11,14 +11,14 @@ app.get('/', function(req, res) {
     res.send("Hello World!");
 });
 
-var base_url = "YOUR_JIRA_BASE_URL"; //example https://test.atlassian.net
+var base_url = "https://resourcevisibility.atlassian.net"; //example https://test.atlassian.net
 
 app.get('/jira', function(req, res) {
     
-    var oa = new OAuth(base_url + "/plugins/servlet/oauth/request-token", //request token
-        base_url + "/plugins/servlet/oauth/access-token", //access token
+    var oa = new OAuth(base_url + "/plugins/servlet/oauth/token", //request token
+        base_url + "/plugins/servlet/oauth/accesstoken", //access token
         "mykey", //consumer key 
-        "YOUR_PEM_FILE_CONTENT", //consumer secret, eg. fs.readFileSync('jira.pem', 'utf8')
+        fs.readFileSync(‘jira.pem’, ‘utf8’), //consumer secret, eg. fs.readFileSync('jira.pem', 'utf8')
         '1.0', //OAuth version
         "http://localhost:1337/jira/callback", //callback url
         "RSA-SHA1");
@@ -43,7 +43,7 @@ app.get('/jira/callback', function(req, res) {
     var oa = new OAuth(req.session.oa._requestUrl,
         req.session.oa._accessUrl,
         req.session.oa._consumerKey,
-        "YOUR_PEM_FILE_CONTENT", //consumer secret, eg. fs.readFileSync('jira.pem', 'utf8')
+        fs.readFileSync(‘jira.pem’, ‘utf8’), //consumer secret, eg. fs.readFileSync('jira.pem', 'utf8')
         req.session.oa._version,
         req.session.oa._authorize_callback,
         req.session.oa._signatureMethod);
@@ -74,10 +74,10 @@ app.get('/jira/callback', function(req, res) {
 
 app.get('/projects', function(req, res) {
     var consumer = new OAuth(
-        base_url+"/plugins/servlet/oauth/request-token",
-        base_url+"/plugins/servlet/oauth/access-token",
+        base_url+"/plugins/servlet/oauth/token",
+        base_url+"/plugins/servlet/oauth/accesstoken",
         "mykey",
-        "YOUR_PEM_FILE_CONTENT", //consumer secret, eg. fs.readFileSync('jira.pem', 'utf8')
+        fs.readFileSync(‘jira.pem’, ‘utf8’), //consumer secret, eg. fs.readFileSync('jira.pem', 'utf8')
         '1.0',
         "http://localhost:1337/jira/callback",
         "RSA-SHA1"
