@@ -18,7 +18,7 @@ app.get('/jira', function(req, res) {
     var oa = new OAuth(base_url + "/plugins/servlet/oauth/token", //request token
         base_url + "/plugins/servlet/oauth/accesstoken", //access token
         "mykey", //consumer key 
-        fs.readFileSync(‘jira.pem’, ‘utf8’), //consumer secret, eg. fs.readFileSync('jira.pem', 'utf8')
+        fs.readFileSync('jira.pem', 'utf8'), //consumer secret, eg. fs.readFileSync('jira.pem', 'utf8')
         '1.0', //OAuth version
         "http://localhost:1337/jira/callback", //callback url
         "RSA-SHA1");
@@ -43,7 +43,7 @@ app.get('/jira/callback', function(req, res) {
     var oa = new OAuth(req.session.oa._requestUrl,
         req.session.oa._accessUrl,
         req.session.oa._consumerKey,
-        fs.readFileSync(‘jira.pem’, ‘utf8’), //consumer secret, eg. fs.readFileSync('jira.pem', 'utf8')
+        fs.readFileSync('jira.pem', 'utf8'), //consumer secret, eg. fs.readFileSync('jira.pem', 'utf8')
         req.session.oa._version,
         req.session.oa._authorize_callback,
         req.session.oa._signatureMethod);
@@ -77,7 +77,7 @@ app.get('/projects', function(req, res) {
         base_url+"/plugins/servlet/oauth/token",
         base_url+"/plugins/servlet/oauth/accesstoken",
         "mykey",
-        fs.readFileSync(‘jira.pem’, ‘utf8’), //consumer secret, eg. fs.readFileSync('jira.pem', 'utf8')
+        fs.readFileSync('jira.pem', 'utf8'), //consumer secret, eg. fs.readFileSync('jira.pem', 'utf8')
         '1.0',
         "http://localhost:1337/jira/callback",
         "RSA-SHA1"
