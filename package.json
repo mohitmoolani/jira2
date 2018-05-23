@@ -4,6 +4,7 @@
   "description": "This module is involved in authenticating JIRA REST API calls from your Node.js application using OAuth",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
