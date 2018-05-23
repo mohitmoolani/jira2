@@ -11,7 +11,7 @@ app.get('/', function(req, res) {
     res.send("Hello World!");
 });
 
-var base_url = "https://resourcevisibility.atlassian.net"; //example https://test.atlassian.net
+var base_url = "https://jira2.herokuapp.com"; //example https://test.atlassian.net
 
 app.get('/jira', function(req, res) {
     
