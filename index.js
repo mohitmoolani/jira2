@@ -15,8 +15,8 @@ var base_url = "https://resourcevisibility.atlassian.net"; //example https://tes
 
 app.get('/jira', function(req, res) {
     
-    var oa = new OAuth(base_url + "/plugins/servlet/oauth/token", //request token
-        base_url + "/plugins/servlet/oauth/accesstoken", //access token
+    var oa = new OAuth(base_url + "/plugins/servlet/oauth/request-token", //request token
+        base_url + "/plugins/servlet/oauth/access-token", //access token
         "mykey", //consumer key 
         fs.readFileSync('jira.pem', 'utf8'), //consumer secret, eg. fs.readFileSync('jira.pem', 'utf8')
         '1.0', //OAuth version
@@ -26,8 +26,8 @@ app.get('/jira', function(req, res) {
     oa.getOAuthRequestToken(function(error, oauthToken, oauthTokenSecret) {
         if (error) {
             console.log('Error:', error);
-            console.log(oauthToken);
-            console.log(oauthTokenSecret);
+            console.log('OUTHTOKEN :- ',oauthToken);
+            console.log('OATH SECRET :- ',oauthTokenSecret);
             res.send('STEP 1: Error requesting OAuth access token');
         } else {
             req.session.oa = oa;
@@ -77,8 +77,8 @@ app.get('/jira/callback', function(req, res) {
 
 app.get('/projects', function(req, res) {
     var consumer = new OAuth(
-        base_url+"/plugins/servlet/oauth/token",
-        base_url+"/plugins/servlet/oauth/accesstoken",
+        base_url+"/plugins/servlet/oauth/request-token",
+        base_url+"/plugins/servlet/oauth/access-token",
         "mykey",
         fs.readFileSync('jira.pem', 'utf8'), //consumer secret, eg. fs.readFileSync('jira.pem', 'utf8')
         '1.0',
@@ -99,6 +99,6 @@ app.get('/projects', function(req, res) {
 
 });
 
-app.listen(process.env.PORT || 5000, function() {
+app.listen(process.env.PORT || 1337, function() {
     console.log('Example app listening on port 1337!');
 });
