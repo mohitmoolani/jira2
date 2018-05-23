@@ -7,7 +7,7 @@ var app = express();
 
 app.use(session({ secret: 'red', saveUninitialized: true, resave: true }));
 
-app.get('/jira', function(req, res) {
+app.get('/projects', function(req, res) {
     res.send("Hello World!");
 });
 
